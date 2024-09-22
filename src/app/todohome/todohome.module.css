@@ -1,0 +1,284 @@
+.Menu {
+  font-size: 22px;
+  color: white; 
+  cursor: pointer;
+  position: absolute; 
+  top: 20px; 
+  left: 10px;
+}
+
+.Menus{
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.main_container {
+  position: relative;
+  display: flex;
+  align-items: flex-start; 
+}
+
+
+.vertical_line_container {
+  margin-left: -9px;
+  background-color: #8396f4;
+  width: 50px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding-top: 81px;
+  margin-top: -9px;
+  transition: width 0.3s;
+}
+
+.vertical_line_expanded {
+  width: 129px; 
+}
+
+.icon_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+
+
+.icon_item svg {
+  flex-shrink: 0; 
+}
+
+
+.icon_name {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateX(-20px);
+  position: relative; 
+}
+
+
+.vertical_line_expanded .icon_name {
+  opacity: 1;
+  transform: translateX(0); 
+}
+
+
+
+
+.icon_item:hover {
+  background-color: #6c7cff; 
+  border-radius: 0px; 
+  padding: 7px; 
+}
+
+/* Default icon item styling */
+.icon_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+  padding: 7px;
+  width: 84%; /* Ensure it covers the entire sidebar width */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Hover effect when the sidebar is expanded */
+.vertical_line_expanded .icon_item:hover {
+  background-color: #6c7cff;
+  border-radius: 0px;
+}
+
+/* Selected effect that is only visible when the sidebar is expanded */
+.vertical_line_expanded .icon_item.selected {
+  background-color: #4a5dff;
+  border-radius: 0px;
+  width: 84%;
+}
+
+/* Ensure smooth transitions */
+.icon_item, .icon_item.selected {
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Icon name opacity when the sidebar is expanded */
+.icon_name {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateX(-20px);
+  position: relative;
+}
+
+/* Show the icon name when the sidebar is expanded */
+.vertical_line_expanded .icon_name {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Remove hover and selected effects when the sidebar is collapsed */
+.vertical_line_container:not(.vertical_line_expanded) .icon_item {
+  background-color: transparent; /* Reset background when sidebar is closed */
+}
+
+/* Other existing styles */
+
+.task_container {
+  padding: 20px;
+}
+
+.task_topic{
+  color: #8396f4;
+  margin-top: -3px;
+}
+
+.task_header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 476%;
+}
+
+
+
+.task_input {
+  flex: 1;
+  padding: 10px;
+  border: 3px solid #8396f4;
+  border-radius: 24px;
+  outline: none;
+}
+
+.add_icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #4a5dff;
+}
+.task_box {
+  background-color: #8396f4; /* Purple background */
+  padding: 20px;
+  border-radius: 20px; /* Rounded corners */
+  width: 100%; /* Adjust width as needed */
+  max-width: 600px; /* Set a maximum width */
+  margin-top: 25px;
+}
+
+.task_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; /* Space around tasks */
+}
+
+.task_actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task_actions svg {
+  cursor: pointer;
+}
+
+/* Horizontal line between tasks */
+.task_divider {
+  border: 0;
+  height: 1px;
+  background-color: white;
+  margin: 10px 0;
+}
+
+
+.main_container {
+  display: flex;
+}
+
+.task_container {
+  padding: 20px;
+  max-width: 800px;
+}
+
+.task_topic {
+  font-size: 24px;
+  color: #8396f4;
+  margin-bottom: 20px;
+}
+
+
+.task_input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #8396f4;
+  border-radius: 8px;
+}
+
+.add_icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #8396f4;
+}
+
+.task_table {
+  width: 462%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.task_table th,
+.task_table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.task_table th {
+  background-color: #8396f4;
+  color: white;
+}
+
+.status_label {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.todo {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.in_progress {
+  background-color: #f5bf42;
+  color: white;
+}
+
+.complete {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit_icon,
+.delete_icon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.edit_icon {
+  color: #8396f4;
+}
+
+.delete_icon {
+  color: #e74c3c;
+}
