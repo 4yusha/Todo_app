@@ -1,13 +1,15 @@
 .Menu {
   font-size: 22px;
-  color: white; 
+  color: white;
   cursor: pointer;
-  position: absolute; 
-  top: 20px; 
+  margin-left: 8px;
+  margin-top: 10px;
+  position: absolute;
+  top: 20px;
   left: 10px;
 }
 
-.Menus{
+.Menus {
   font-size: 16px;
   margin-left: 10px;
   margin-top: 20px;
@@ -16,11 +18,11 @@
 .main_container {
   position: relative;
   display: flex;
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
-
 .vertical_line_container {
+  position: absolute;
   margin-left: -9px;
   background-color: #8396f4;
   width: 50px;
@@ -33,10 +35,11 @@
   padding-top: 81px;
   margin-top: -9px;
   transition: width 0.3s;
+  z-index: 100;
 }
 
 .vertical_line_expanded {
-  width: 129px; 
+  width: 129px;
 }
 
 .icon_container {
@@ -46,37 +49,6 @@
   gap: 20px;
 }
 
-
-
-.icon_item svg {
-  flex-shrink: 0; 
-}
-
-
-.icon_name {
-  opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transform: translateX(-20px);
-  position: relative; 
-}
-
-
-.vertical_line_expanded .icon_name {
-  opacity: 1;
-  transform: translateX(0); 
-}
-
-
-
-
-.icon_item:hover {
-  background-color: #6c7cff; 
-  border-radius: 0px; 
-  padding: 7px; 
-}
-
-/* Default icon item styling */
 .icon_item {
   display: flex;
   align-items: center;
@@ -86,29 +58,24 @@
   position: relative;
   cursor: pointer;
   padding: 7px;
-  width: 84%; /* Ensure it covers the entire sidebar width */
+  width: 84%;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Hover effect when the sidebar is expanded */
-.vertical_line_expanded .icon_item:hover {
+.icon_item:hover {
   background-color: #6c7cff;
   border-radius: 0px;
 }
 
-/* Selected effect that is only visible when the sidebar is expanded */
-.vertical_line_expanded .icon_item.selected {
+.icon_item.selected {
   background-color: #4a5dff;
-  border-radius: 0px;
   width: 84%;
 }
 
-/* Ensure smooth transitions */
-.icon_item, .icon_item.selected {
-  transition: background-color 0.3s ease-in-out;
+.icon_item svg {
+  flex-shrink: 0;
 }
 
-/* Icon name opacity when the sidebar is expanded */
 .icon_name {
   opacity: 0;
   white-space: nowrap;
@@ -117,26 +84,37 @@
   position: relative;
 }
 
-/* Show the icon name when the sidebar is expanded */
 .vertical_line_expanded .icon_name {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Remove hover and selected effects when the sidebar is collapsed */
-.vertical_line_container:not(.vertical_line_expanded) .icon_item {
-  background-color: transparent; /* Reset background when sidebar is closed */
+.vertical_line_expanded .icon_item:hover {
+  background-color: #6c7cff;
+  border-radius: 0px;
 }
 
-/* Other existing styles */
+.vertical_line_expanded .icon_item.selected {
+  background-color: #4a5dff;
+  border-radius: 0px;
+  width: 84%;
+}
+
+.vertical_line_container:not(.vertical_line_expanded) .icon_item {
+  background-color: transparent;
+}
 
 .task_container {
+  margin-left: 45px;
   padding: 20px;
+  max-width: 800px;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-.task_topic{
+.task_topic {
+  font-size: 24px;
   color: #8396f4;
-  margin-top: -3px;
+  margin-bottom: 20px;
 }
 
 .task_header {
@@ -146,12 +124,10 @@
   width: 476%;
 }
 
-
-
 .task_input {
   flex: 1;
   padding: 10px;
-  border: 3px solid #8396f4;
+  border: 3px solid #a9b5f0;
   border-radius: 24px;
   outline: none;
 }
@@ -160,74 +136,6 @@
   font-size: 24px;
   cursor: pointer;
   color: #4a5dff;
-}
-.task_box {
-  background-color: #8396f4; /* Purple background */
-  padding: 20px;
-  border-radius: 20px; /* Rounded corners */
-  width: 100%; /* Adjust width as needed */
-  max-width: 600px; /* Set a maximum width */
-  margin-top: 25px;
-}
-
-.task_list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.task_item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0; /* Space around tasks */
-}
-
-.task_actions {
-  display: flex;
-  gap: 10px;
-}
-
-.task_actions svg {
-  cursor: pointer;
-}
-
-/* Horizontal line between tasks */
-.task_divider {
-  border: 0;
-  height: 1px;
-  background-color: white;
-  margin: 10px 0;
-}
-
-
-.main_container {
-  display: flex;
-}
-
-.task_container {
-  padding: 20px;
-  max-width: 800px;
-}
-
-.task_topic {
-  font-size: 24px;
-  color: #8396f4;
-  margin-bottom: 20px;
-}
-
-
-.task_input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #8396f4;
-  border-radius: 8px;
-}
-
-.add_icon {
-  cursor: pointer;
-  font-size: 24px;
-  color: #8396f4;
 }
 
 .task_table {
@@ -244,41 +152,18 @@
 }
 
 .task_table th {
-  background-color: #8396f4;
+  background-color: #a9b5f0;
   color: white;
-}
-
-.status_label {
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.todo {
-  background-color: #e0e0e0;
-  color: #555;
-}
-
-.in_progress {
-  background-color: #f5bf42;
-  color: white;
-}
-
-.complete {
-  background-color: #4caf50;
-  color: white;
-}
-
-.edit_icon,
-.delete_icon {
-  cursor: pointer;
-  font-size: 18px;
 }
 
 .edit_icon {
-  color: #8396f4;
+  cursor: pointer;
+  font-size: 18px;
+  color: #a9b5f0;
 }
 
 .delete_icon {
+  cursor: pointer;
+  font-size: 18px;
   color: #e74c3c;
 }
