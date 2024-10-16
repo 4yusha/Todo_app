@@ -1,8 +1,7 @@
-// src/app/api/login/route.js
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { User } from "@/model/user-model"; // Adjust this path based on your setup
-import { dbConnect } from "@/lib/mongo"; // Adjust this path based on your setup
+import { User } from "@/model/user-model"; 
+import { dbConnect } from "@/lib/mongo";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
