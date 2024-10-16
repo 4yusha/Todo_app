@@ -7,18 +7,18 @@ import { FaEyeSlash } from 'react-icons/fa';
 import styles from './login.module.css';
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
-  const [email, setEmail] = useState(''); // State for email
-  const [password, setPassword] = useState(''); // State for password
-  const [error, setError] = useState(''); // State for error messages
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); 
   const router = useRouter();
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prev => !prev); // Toggle the password visibility
+    setShowPassword(prev => !prev); 
   };
 
   const goToSignup = () => {
-    router.push('/signup'); // Navigate to the signup page
+    router.push('/signup');
   };
 
   const handleLogin = async (e: { preventDefault: () => void; }) => {
@@ -31,16 +31,16 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }), // Send the email and password
+        body: JSON.stringify({ email, password }), 
       });
 
       const data = await res.json();
 
       if (res.status === 200) {
-        // Redirect to dashboard or home page on successful login
+        
         router.push('/todohome');
       } else {
-        setError(data.message); // Display the error message
+        setError(data.message); 
       }
     } catch (error) {
       setError('An error occurred during login.');
@@ -51,7 +51,7 @@ const Login = () => {
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <Image 
-          src="/images/login_image.png"  // Ensure the image path is correct
+          src="/images/login_image.png"  
           alt="Login"
           width={650}
           height={650}
@@ -67,8 +67,8 @@ const Login = () => {
               name="email"
               className={styles.input} 
               placeholder="Email" 
-              value={email} // Bind email state
-              onChange={(e) => setEmail(e.target.value)} // Update state on input
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
               required 
             />
           </div>
@@ -79,8 +79,8 @@ const Login = () => {
               name="password" 
               className={styles.input} 
               placeholder="Password" 
-              value={password} // Bind password state
-              onChange={(e) => setPassword(e.target.value)} // Update state on input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
               required 
             />
             <span 
@@ -90,13 +90,13 @@ const Login = () => {
               {showPassword ? <IoEyeSharp /> : <FaEyeSlash />}
             </span>
           </div>
-          {error && <p className={styles.error}>{error}</p>} {/* Display error if exists */}
+          {error && <p className={styles.error}>{error}</p>} 
           <button type="submit" className={styles.button}>Log in</button>
           <h4 className={styles.noAcc}>
             Create an account?{' '}
             <u 
               className={styles.linkSignup} 
-              onClick={goToSignup} // Attach the goToSignup function here
+              onClick={goToSignup} 
             >
               Sign up
             </u>
