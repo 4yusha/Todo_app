@@ -1,25 +1,25 @@
-"use client"; // This is necessary to ensure this file runs as a client component
+"use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // Import the new useRouter hook for App Router
+import { useRouter } from "next/navigation";
 import { CiMenuBurger } from "react-icons/ci";
 import { SlWrench } from "react-icons/sl";
 import { CiCalendar } from "react-icons/ci";
 import { CiTimer } from "react-icons/ci";
 import { CiStickyNote } from "react-icons/ci";
-import { AiOutlinePlus } from "react-icons/ai"; // Plus icon
-import { FaEdit, FaTrashAlt } from "react-icons/fa"; // Edit and Delete icons
+import { AiOutlinePlus } from "react-icons/ai";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import styles from "./todohome.module.css";
 
 const Todohome = () => {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [selectedSection, setSelectedSection] = useState("");
-  const [tasks, setTasks] = useState<string[]>([]); // Initialize with an empty array
+  const [tasks, setTasks] = useState<string[]>([]); 
   const [newTask, setNewTask] = useState<string>("");
 
-  // Toggle function to show or hide the sidebar
+ 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
     if (!isSidebarVisible) {
@@ -27,23 +27,28 @@ const Todohome = () => {
     }
   };
 
-  // Handler to set the selected section
   const handleSectionClick = (section: string) => {
     setSelectedSection(section);
-    if (section === "calendar") {
-      router.push("/calendar"); // Navigate to the calendar page when clicked
+    if (section === "To do") {
+      router.push("/todohome");
+    } else if (section === "Calendar") {
+      router.push("/calendar");
+    } else if (section === "timer") {
+      router.push("/timer");
+    } else if (section === "notes") {
+      router.push("/notes");
     }
   };
 
-  // Handle adding a new task
+
   const handleAddTask = () => {
     if (newTask.trim()) {
       setTasks([...tasks, newTask]);
-      setNewTask(""); // Clear input
+      setNewTask(""); 
     }
   };
 
-  // Handle editing a task
+ 
   const handleEditTask = (index: number) => {
     const updatedTask = prompt("Edit task:", tasks[index]);
     if (updatedTask !== null) {
@@ -53,7 +58,6 @@ const Todohome = () => {
     }
   };
 
-  // Handle deleting a task
   const handleDeleteTask = (index: number) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
@@ -62,9 +66,11 @@ const Todohome = () => {
   return (
     <div className={styles.main_container}>
       <div
-        className={`${styles.vertical_line_container} ${
-          isSidebarVisible ? styles.vertical_line_expanded : ""
-        }`}
+        className={
+          isSidebarVisible
+            ? `${styles.vertical_line_container} ${styles.vertical_line_expanded}`
+            : styles.vertical_line_container
+        }
       >
         <div className={styles.Menu} onClick={toggleSidebar}>
           <CiMenuBurger />
@@ -72,14 +78,13 @@ const Todohome = () => {
         </div>
 
         <div className={styles.icon_container}>
-          {/* Sidebar Icons */}
           <div
             className={`${styles.icon_item} ${
-              isSidebarVisible && selectedSection === "todo"
+              isSidebarVisible && selectedSection === "To do"
                 ? styles.selected
                 : ""
             }`}
-            onClick={() => handleSectionClick("todo")}
+            onClick={() => handleSectionClick("To do")}
           >
             <SlWrench />
             {isSidebarVisible && (
@@ -88,17 +93,18 @@ const Todohome = () => {
           </div>
           <div
             className={`${styles.icon_item} ${
-              isSidebarVisible && selectedSection === "calendar"
+              isSidebarVisible && selectedSection === "Calendar"
                 ? styles.selected
                 : ""
             }`}
-            onClick={() => handleSectionClick("/calendar")}
+            onClick={() => handleSectionClick("Calendar")} 
           >
             <CiCalendar />
             {isSidebarVisible && (
               <span className={styles.icon_name}>Calendar</span>
             )}
           </div>
+
           <div
             className={`${styles.icon_item} ${
               isSidebarVisible && selectedSection === "timer"
@@ -128,7 +134,7 @@ const Todohome = () => {
         </div>
       </div>
 
-      {/* Task list */}
+      
       <div className={styles.task_container}>
         <h2 className={styles.task_topic}>Tasks to do</h2>
         <div className={styles.task_header}>
@@ -142,7 +148,7 @@ const Todohome = () => {
           <AiOutlinePlus onClick={handleAddTask} className={styles.add_icon} />
         </div>
 
-        {/* Updated Table Layout without Status Column */}
+        
         <table className={styles.task_table}>
           <thead>
             <tr>
