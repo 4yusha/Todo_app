@@ -7,21 +7,21 @@ import { FaEyeSlash } from "react-icons/fa";
 import styles from "./signup.module.css";
 
 const Signup: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
-  const [error, setError] = useState<string | null>(null); // State for error handling
-  const router = useRouter(); // Initialize useRouter
+  const [showPassword, setShowPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
+  const [error, setError] = useState<string | null>(null); 
+  const router = useRouter(); 
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev); // Toggle the password visibility
+    setShowPassword((prev) => !prev);
   };
 
   const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword((prev) => !prev); // Toggle the confirm password visibility
+    setShowConfirmPassword((prev) => !prev);
   };
 
   const goToLogin = () => {
-    router.push('/login'); // Navigate to the login page
+    router.push('/login');
   };
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
@@ -34,7 +34,7 @@ const Signup: React.FC = () => {
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirmPassword') as string;
 
-    // Client-side validation
+ 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
@@ -101,7 +101,7 @@ const Signup: React.FC = () => {
               className={styles.input}
               placeholder="Password"
               required
-              minLength={6} // Optional: Add minLength for validation
+              minLength={6}
             />
             <span className={styles.eyeIconL} onClick={togglePasswordVisibility}>
               {showPassword ? <IoEyeSharp /> : <FaEyeSlash />}
@@ -113,13 +113,13 @@ const Signup: React.FC = () => {
               className={styles.input}
               placeholder="Confirm Password"
               required
-              minLength={6} // Optional: Add minLength for validation
+              minLength={6} 
             />
             <span className={styles.eyeIconF} onClick={toggleConfirmPasswordVisibility}>
               {showConfirmPassword ? <IoEyeSharp /> : <FaEyeSlash />}
             </span>
           </div>
-          {error && <p className={styles.error}>{error}</p>} {/* Display error message */}
+          {error && <p className={styles.error}>{error}</p>}
           <button type="submit" className={styles.button}>
             Sign up
           </button>
